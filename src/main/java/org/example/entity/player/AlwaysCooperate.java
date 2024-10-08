@@ -11,7 +11,7 @@ public class AlwaysCooperate implements Player {
     }
 
     @Override
-    public void updateScore(int score) {
+    public void updateScore(int score, PlayerAction opponentAction) {
         this.score += score;
     }
 

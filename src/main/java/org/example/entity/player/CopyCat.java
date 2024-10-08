@@ -2,16 +2,18 @@ package org.example.entity.player;
 
 import org.example.enums.PlayerAction;
 
-public class AlwaysCheat implements Player {
+public class CopyCat implements Player {
     private int score = 0;
+    private PlayerAction lastAction = PlayerAction.CHEAT;
 
     @Override
     public PlayerAction play() {
-        return PlayerAction.CHEAT;
+        return lastAction;
     }
 
     @Override
     public void updateScore(int score, PlayerAction opponentAction) {
+        lastAction = opponentAction;
         this.score += score;
     }
 

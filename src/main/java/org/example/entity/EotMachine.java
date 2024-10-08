@@ -18,18 +18,19 @@ public class EotMachine {
     }
 
     public void play(int numberOfRounds) {
-        PlayerAction player1Action = player1.play();
-        PlayerAction player2Action = player2.play();
 
         for (int i = 0; i < numberOfRounds; i++) {
+            PlayerAction player1Action = player1.play();
+            PlayerAction player2Action = player2.play();
+
             if (player1Action == PlayerAction.COOPERATE) {
-                player1.updateScore(Result.LOSE.getValue());
-                player2.updateScore(Result.WIN.getValue());
+                player1.updateScore(Result.LOSE.getValue(), player2Action);
+                player2.updateScore(Result.WIN.getValue(), player1Action);
             }
 
             if (player2Action == PlayerAction.COOPERATE) {
-                player1.updateScore(Result.WIN.getValue());
-                player2.updateScore(Result.LOSE.getValue());
+                player1.updateScore(Result.WIN.getValue(), player2Action);
+                player2.updateScore(Result.LOSE.getValue(), player1Action);
             }
         }
     }

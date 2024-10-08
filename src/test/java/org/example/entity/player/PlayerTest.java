@@ -1,8 +1,5 @@
-package org.example.entity;
+package org.example.entity.player;
 
-import org.example.entity.player.AlwaysCheat;
-import org.example.entity.player.AlwaysCooperate;
-import org.example.entity.player.Player;
 import org.example.enums.PlayerAction;
 import org.junit.jupiter.api.Test;
 
@@ -19,8 +16,15 @@ class PlayerTest {
 
     @Test
     void testAlwaysCooperatePlayerCheats() {
-        Player firstAlwaysCooperatePlayer = new AlwaysCooperate();
+        Player AlwaysCooperatePlayer = new AlwaysCooperate();
 
-        assertEquals(PlayerAction.COOPERATE, firstAlwaysCooperatePlayer.play());
+        assertEquals(PlayerAction.COOPERATE, AlwaysCooperatePlayer.play());
+    }
+
+    @Test
+    void testCopyCatPlayerCheatsFirst() {
+        Player copycatPlayer = new CopyCat();
+
+        assertEquals(PlayerAction.CHEAT, copycatPlayer.play());
     }
 }

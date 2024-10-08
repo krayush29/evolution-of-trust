@@ -2,6 +2,7 @@ package org.example.entity;
 
 import org.example.entity.player.AlwaysCheat;
 import org.example.entity.player.AlwaysCooperate;
+import org.example.entity.player.CopyCat;
 import org.example.entity.player.Player;
 import org.junit.jupiter.api.Test;
 
@@ -111,5 +112,42 @@ class EotMachineTest {
 
         assertEquals(10, firstPlayer.result());
         assertEquals(10, secondPlayer.result());
+    }
+
+
+    @Test
+    void testFirstPlayerCheatSecondPlayerCopyCatForFiveRounds() {
+        Player firstPlayer = new AlwaysCheat();
+        Player secondPlayer = new CopyCat();
+
+        EotMachine eotMachine = new EotMachine(firstPlayer, secondPlayer);
+        eotMachine.play(5);
+
+        assertEquals(0, firstPlayer.result());
+        assertEquals(0, secondPlayer.result());
+    }
+
+    @Test
+    void testFirstPlayerCooperateSecondPlayerCopyCatForFiveRounds() {
+        Player firstPlayer = new AlwaysCooperate();
+        Player secondPlayer = new CopyCat();
+
+        EotMachine eotMachine = new EotMachine(firstPlayer, secondPlayer);
+        eotMachine.play(5);
+
+        assertEquals(7, firstPlayer.result());
+        assertEquals(11, secondPlayer.result());
+    }
+
+    @Test
+    void testBothCopyCatPlayerForFiveRounds() {
+        Player firstPlayer = new CopyCat();
+        Player secondPlayer = new CopyCat();
+
+        EotMachine eotMachine = new EotMachine(firstPlayer, secondPlayer);
+        eotMachine.play(5);
+
+        assertEquals(0, firstPlayer.result());
+        assertEquals(0, secondPlayer.result());
     }
 }

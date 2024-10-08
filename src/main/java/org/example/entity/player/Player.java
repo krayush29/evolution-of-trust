@@ -6,7 +6,7 @@ public interface Player {
 
     PlayerAction play();
 
-    void updateScore(int score);
+    void updateScore(int score, PlayerAction opponentAction);
 
     int result();
 }
